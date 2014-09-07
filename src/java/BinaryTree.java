@@ -2,7 +2,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class BinaryTree<T> {
-  private BinaryNode<T> root = new BinaryNode<T>();
+  BinaryNode<T> root = new BinaryNode<T>();
 
   public BinaryTree(T rootVal) {
     root.data = rootVal;
