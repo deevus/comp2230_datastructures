@@ -1,28 +1,30 @@
 
-public class Graph {
+public class Graph<T> {
 
-	LinkedList<Vertex<int>> vertices;
+	LinkedList<Vertex<T>> vertices;
 	
 	public Graph() {
-		vertices = new LinkedList<Vertex<int>>();
+		vertices = new LinkedList<Vertex<T>>();
 	}
 	
-	public void add(int vertexIndex, int val) {
-		Vertex newVertex = new Vertex(val);
-		Vertex existingVertex = vertices.get(vertexIndex);
+	public void add(int vertexIndex, T val) {
+		Vertex<T> newVertex = new Vertex<T>();
+		newVertex.value = val;
+
+		Vertex<T> existingVertex = vertices.get(vertexIndex);
 		existingVertex.append(newVertex);
 	}
 	
 	public String degrees() {
 		String result = "";
-		for (Vertex v : vertices) {
+		for (Vertex<T> v : vertices) {
 			int count = 0;
-			
-			for (Vertex adjacentVertex : v.getAdjacentVertices()) {
+
+			for (Vertex<T> adjacentVertex : v.adjacentVertices) {
 				count++;
 			}
 			
-			result += "Vertex " + v.getValue().toString() + " has degree " + count + "\n";
+			result += "Vertex " + v.value.toString() + " has degree " + count + "\n";
 		}
 		
 		return result;
