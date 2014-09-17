@@ -11,12 +11,16 @@ public class LLQueue<T> implements Queue<T> {
 		return front == null && end == null;
 	}
 
-	public void enqueue() {
+	public void enqueue(T val) {
+		Node<T> newNode = new Node();
+		newNode.data = val;
 
+		end.next = newNode;
+		end = newNode;
 	}
 
 	public void dequeue() {
-
+		front = front.next;
 	}
 
 	public T front() {
