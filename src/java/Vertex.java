@@ -1,12 +1,16 @@
-public class Vertex<E> {
-	public LinkedList<Vertex<E>> adjacentVertices;
-	public E value;
+public class Vertex {
+	public LinkedList<Vertex> adjacentVertices;
+	public int index;
+
+	private static int _index = 1;
 	
 	public void Vertex() {
-		adjacentVertices = new LinkedList<Vertex<E>>();
+		adjacentVertices = new LinkedList<Vertex>();
+		index = _index;
+		_index++;
 	}
 		
-	public void append(Vertex<E> v) {
+	public void append(Vertex v) {
 		adjacentVertices.add(v);
 	}
 }

@@ -1,30 +1,49 @@
 
-public class Graph<T> {
+public class Graph {
 
-	LinkedList<Vertex<T>> vertices;
+	LinkedList<Vertex> vertices;
+	LinkedList<Edge> edges;
 	
 	public Graph() {
-		vertices = new LinkedList<Vertex<T>>();
+		vertices = new LinkedList<Vertex>();
+		edges = new LinkedList<Edge>();
 	}
 	
-	public void add(int vertexIndex, T val) {
-		Vertex<T> newVertex = new Vertex<T>();
-		newVertex.value = val;
+	/**
+	 * Adds a disconnected Vertex
+	 */
+	public void add() {
+		Vertex loneVertex = new Vertex();
+	}
 
-		Vertex<T> existingVertex = vertices.get(vertexIndex);
+	/**
+	 *	Adds a connected Vertex
+	 */
+	public void add(int existingVertexIndex) {
+		//Create the new Vertex
+		Vertex newVertex = new Vertex();
+
+		//Append it to the connected Vertex
+		Vertex existingVertex = vertices.get(existingVertexIndex);
 		existingVertex.append(newVertex);
+
+		//Connect the two vertices via an edge
+		Edge connectingEdge = new Edge();
+		connectingEdge.v = existingVertex;
+		connectingEdge.w = newVertex;
+		
 	}
 	
 	public String degrees() {
 		String result = "";
-		for (Vertex<T> v : vertices) {
+		for (Vertex v : vertices) {
 			int count = 0;
 
-			for (Vertex<T> adjacentVertex : v.adjacentVertices) {
+			for (Vertex adjacentVertex : v.adjacentVertices) {
 				count++;
 			}
 			
-			result += "Vertex " + v.value.toString() + " has degree " + count + "\n";
+			result += "Vertex " + v.index + " has degree " + count + "\n";
 		}
 		
 		return result;
