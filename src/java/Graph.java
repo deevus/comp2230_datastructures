@@ -27,11 +27,16 @@ public class Graph {
 		Vertex existingVertex = vertices.get(existingVertexIndex);
 		existingVertex.append(newVertex);
 
+		newVertex.append(existingVertex);
+
 		//Connect the two vertices via an edge
 		Edge connectingEdge = new Edge();
 		connectingEdge.v = existingVertex;
 		connectingEdge.w = newVertex;
-		
+
+		this.vertices.add(newVertex);
+		this.edges.add(connectingEdge);
+
 	}
 	
 	public String degrees() {
