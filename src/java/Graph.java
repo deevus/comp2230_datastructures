@@ -38,6 +38,19 @@ public class Graph {
 		this.edges.add(connectingEdge);
 
 	}
+
+	public void connect(int vertexIndex1, int vertexIndex2) {
+		//Get the respective Vertices
+		Vertex v = vertices.get(vertexIndex1);
+		Vertex w = vertices.get(vertexIndex2);
+
+		//Create and Edge betwee the two
+		Edge newEdge = new Edge();
+		newEdge.v = v;
+		newEdge.w = w;
+
+		this.edges.add(newEdge);
+	}
 	
 	public String degrees() {
 		String result = "";
