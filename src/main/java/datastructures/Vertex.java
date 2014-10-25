@@ -1,3 +1,4 @@
+package datastructures;
 public class Vertex {
 	public LinkedList<Vertex> adjacentVertices;
 	public int index;

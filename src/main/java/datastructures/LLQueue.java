@@ -1,3 +1,4 @@
+package datastructures;
 public class LLQueue<T> implements Queue<T> {
 	Node<T> front;
 	Node<T> end;

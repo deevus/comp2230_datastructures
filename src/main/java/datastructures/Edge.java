@@ -1,3 +1,4 @@
+package datastructures;
 public class Edge {
 
 	public int weight = 1;

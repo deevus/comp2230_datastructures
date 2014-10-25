@@ -1,3 +1,4 @@
+package datastructures;
 public interface Stack<T> {
 
   /**

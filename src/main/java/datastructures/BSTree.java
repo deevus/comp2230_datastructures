@@ -1,3 +1,4 @@
+package datastructures;
 import java.util.NoSuchElementException;
 
 public class BSTree<T extends Comparable> extends BinaryTree<T> {

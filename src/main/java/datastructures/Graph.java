@@ -1,4 +1,10 @@
+package datastructures;
 
+/**
+ * Hello
+ * @author Tyler 2
+ *
+ */
 public class Graph {
 
 	LinkedList<Vertex> vertices;

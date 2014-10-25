@@ -1,3 +1,4 @@
+package datastructures;
 public class LLStack<T> implements Stack<T> {
   Node<T> t;
 

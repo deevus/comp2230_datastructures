@@ -1,3 +1,4 @@
+package datastructures;
 public interface Queue<T> {
   /**
    * Make the queue empty.
