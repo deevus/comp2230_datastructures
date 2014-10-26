@@ -52,6 +52,8 @@ public class Graph {
 			//head node as a point of reference
 			if (w != null) {
 				w.append(v);
+				Edge e = new Edge(w,v);
+				edges.add(e);
 			} else {
 				vertices.set(index, v);
 				this.size++;
