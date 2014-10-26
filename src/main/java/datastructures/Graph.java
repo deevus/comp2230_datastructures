@@ -175,4 +175,24 @@ public class Graph {
 		
 		return result;
 	}
+	
+	public int[][] adjacencyMatrix() {
+		int[][] matrix = new int[size+1][size+1];
+		
+		for (int x = 0; x < vertices.size(); x++) {
+			Vertex v = vertices.get(x);
+			
+			if (v != null) {
+				for (int i = 0; i < v.numEdgesOut(); i++) {
+					Vertex w = v.getAdjacentVertexAt(i);
+					
+					int y = vertices.indexOf(w);
+					matrix[x][y] = 1;
+				}
+			}
+		}
+		
+		return matrix;
+	}
+	
 }

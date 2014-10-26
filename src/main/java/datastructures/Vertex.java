@@ -1,7 +1,7 @@
 package datastructures;
 
-import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.UUID;
 
 /**
  * Represents a Vertex in a Graph
@@ -21,6 +21,8 @@ public class Vertex {
 
 	private boolean marked;
 	
+	private UUID uniqueIdentifier;
+	
 	//Constructors
 	
 	/**
@@ -34,6 +36,8 @@ public class Vertex {
 		
 		//Increment the static index
 		_index++;
+		
+		this.uniqueIdentifier = UUID.randomUUID();
 	}
 		
 	//Getters
@@ -138,32 +142,9 @@ public class Vertex {
 
 		Vertex other = (Vertex) obj;
 		
-		//Check that the Adjacent Vertices are equal
-		if (this.adjacentVertices != null && other.adjacentVertices != null) {
-			//Check the size is equal
-			if (adjacentVertices.size() != other.adjacentVertices.size()) {
-				return false;
-			} else {
-				//Iterate over each Vertex and confirm they are equal
-				Iterator<Vertex> thisIt = this.adjacentVertices.iterator();
-				Iterator<Vertex> otherIt = other.adjacentVertices.iterator();
-				
-				while (thisIt.hasNext()) {
-					Vertex v = thisIt.next();
-					Vertex w = otherIt.next();
-					
-					if (!v.equals(w)) {
-						return false;
-					}
-				}
-			}
-		} else if (this.adjacentVertices == null && other.adjacentVertices != null) {
+		if (this.uniqueIdentifier.equals(other.uniqueIdentifier))
+			return true;
+		else
 			return false;
-		} else if (this.adjacentVertices != null && other.adjacentVertices == null) {
-			return false;
-		}
-		
-		//All tests have passed, return true
-		return true;
 	}
 }

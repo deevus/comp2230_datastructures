@@ -154,4 +154,46 @@ public class GraphTest {
 		
 		Assert.assertEquals(expectedOutput, actualOutput);
 	}
+	
+	@Test
+	public void testAdjacencyMatrix() {
+		Graph g = new Graph();
+		
+		Vertex one = new Vertex();
+		Vertex two = new Vertex();
+		Vertex three = new Vertex();
+		
+		//Add initial Vertices
+		g.add(one, 1);
+		g.add(two, 2);
+		g.add(three, 3);
+		
+		//Connect Vertices
+		g.add(two, 1);
+		g.add(three, 1);
+		g.add(one, 2);
+		g.add(one, 3);
+		g.add(three, 3);
+		
+		int[][] actualMatrix = g.adjacencyMatrix();
+		
+		int size = g.size();
+		
+		int[][] expectedMatrix = new int[size+1][size+1];
+		expectedMatrix[1][2] = 1;
+		expectedMatrix[1][3] = 1;
+		expectedMatrix[2][1] = 1;
+		expectedMatrix[3][1] = 1;
+		expectedMatrix[3][3] = 1;
+		
+		Assert.assertEquals(expectedMatrix.length, actualMatrix.length);
+		
+		for (int i = 0; i < actualMatrix.length; i++) {
+			Assert.assertEquals(expectedMatrix[i].length, actualMatrix[i].length);
+			
+			for (int j = 0; j < actualMatrix.length; j++) {
+				Assert.assertEquals(expectedMatrix[i][j], actualMatrix[i][j]);
+			}
+		}
+	}
 }
