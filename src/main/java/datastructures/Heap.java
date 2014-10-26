@@ -120,17 +120,17 @@ public class Heap<T extends Comparable<T>> implements Collection<T> {
 	
 	private static <T extends Comparable<T>> void siftdown(List<T> data, int rootIndex) {
 		//last index
-		int last = data.size() - 1;
+		int size = data.size();
+		int last = size - 1;
 
 		//get the root 
 		T temp = data.get(rootIndex);
-		System.out.println("Root: " + temp);
 
 		//check for left child
-		while (2 * rootIndex <= last) {
+		while (2 * rootIndex <= size) {
 			int childIndex = 2 * rootIndex;
 
-			//if there is a right child and it is begger than
+			//if there is a right child and it is bigger than
 			//the left child, move child
 			if (childIndex < last) {
 				int compareVal = data.get(childIndex + 1).compareTo(data.get(childIndex));
@@ -152,7 +152,7 @@ public class Heap<T extends Comparable<T>> implements Collection<T> {
 	}
 	
 	public static <T extends Comparable<T>> void heapify(List<T> data) {
-		for (int i = (int)Math.floor(data.size() / 2); i > 0; i--) {
+		for (int i = (int)Math.floor((data.size() - 1) / 2); i >= 0; i--) {
 			siftdown(data, i);
 		}
 	}

@@ -19,10 +19,11 @@ public class HeapTest {
 
 		List<Integer> list = Arrays.asList(array);
 		Collections.reverse(list);
+		System.out.println(list);
 		Heap<Integer> heap = new Heap<Integer>(list);
 
 		Assert.assertEquals(array.length, heap.size());
-		Assert.assertEquals(array[0], heap.largest());
+		Assert.assertEquals((int)104, (int)heap.largest());
 
 		System.out.println(heap);
 	}
