@@ -16,6 +16,17 @@ public class LinkedList<T> implements Iterable<T> {
     return true;
   }
 
+  public void add_long(T val) {
+	  //Go to end of list
+	  Node<T> curr = start;
+	  while (curr.next != null) {
+		  curr = curr.next;
+	  }
+	  
+	  //Insert data at end (tail)
+	  insert(val, curr);
+  }
+  
   public void add(T val, int index) {
     Node<T> currNode = start.next;
     
@@ -101,18 +112,55 @@ public class LinkedList<T> implements Iterable<T> {
   }
 
   public T remove(int index) {
-    Node<T> currNode = start.next;
+    Node<T> currNode = start;
 
-    for (int i = 0; i < index; i++) {
+    if (index > size()) {
+    	return null;
+    }
+    
+    for (int i = 0; i < index - 1; i++) {
       currNode = currNode.next;
     }
 
     T data = currNode.next.data;
-    start.next = start.next.next;
+    delete(currNode);
     return data;
   }
+  
+  public void remove(T val) {
+	  
+	  if (start.data.equals(val)) {
+		  remove();
+	  } else {
+		//Search for target
+		Node<T> curr = start;
+		
+		while (curr.next != null) {
+			if (curr.next.data.equals(val)) {
+				delete(curr);
+			}
+		}
+	  }
+  }
+  
+  /**
+   * Reverses the list
+   * @runningTime Theta(n)
+   */
+  public void reverse() {
+	  Node<T> before = null;
+	  Node<T> curr = start;
+	  Node<T> after = null;
+	  
+	  while(curr != null) {
+		  after = curr.next;
+		  curr.next = before;
+		  before = curr;
+		  curr = after;
+	  }
+  }
 
-  //*** Private Methods ***//
+  /************ Private Methods **********/
 
   /**
    * Deletes the node after the current node
@@ -121,6 +169,18 @@ public class LinkedList<T> implements Iterable<T> {
     pos.next = pos.next.next;
   }
 
+  private int size() {
+	  Node<T> curr = start;
+	  int size = 0;
+	  
+	  while (curr != null) {
+		  size++;
+		  curr = curr.next;
+	  }
+	  
+	  return size;
+  }
+  
   private void print(Node<T> start) {
     while (start != null) {
       System.out.println(start.data);
@@ -138,6 +198,9 @@ public class LinkedList<T> implements Iterable<T> {
     pos.next = temp;
   }
 
+  
+  /*********** Iterator ************/
+  
   public Iterator<T> iterator() {
     return new LinkedListIterator();
   }
