@@ -2,6 +2,7 @@ package test;
 
 import junit.framework.Assert;
 import datastructures.*;
+import java.util.*;
 
 import org.junit.Test;
 
@@ -15,17 +16,20 @@ public class HeapTest {
 			104, 71, 24, 66, 27, 23,
 			8, 5, 32, 25, 18, 22
 		};
-		
-		Integer[] expected = array.clone();
-		
-		Heap.heapify(array, array.length);
-		
-		Assert.assertEquals(expected, array);
+
+		List<Integer> list = Arrays.asList(array);
+		Collections.reverse(list);
+		Heap<Integer> heap = new Heap<Integer>(list);
+
+		Assert.assertEquals(array.length, heap.size());
+		Assert.assertEquals(array[0], heap.largest());
+
+		System.out.println(heap);
 	}
 	
 	@Test
 	public void testInsert() {
-		Heap<Integer> heap = new Heap<Integer>(Integer.class, 5);
+		Heap<Integer> heap = new Heap<Integer>(5);
 	}
 	
 	@Test
