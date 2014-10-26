@@ -2,7 +2,7 @@ package datastructures;
 
 import java.lang.reflect.Array;
 
-public class ArrayStack<T> {
+public class ArrayStack<T> implements Stack<T> {
 
 	private final int MAX_SIZE;
 	private int top;
@@ -13,14 +13,17 @@ public class ArrayStack<T> {
 		this.MAX_SIZE = maxSize;
 		data = (T[])Array.newInstance(_class, MAX_SIZE);
 		
-		stack_init();
+		init();
 	}
 	
-	public void stack_init() {
+	@Override
+	public void init() {
 		top = -1;
+		
 	}
 	
-	public boolean isEmpty() {
+	@Override
+	public boolean empty() {
 		return top == -1;
 	}
 	
@@ -28,6 +31,7 @@ public class ArrayStack<T> {
 		return top == MAX_SIZE;
 	}
 	
+	@Override
 	public void push(T val) {
 		if (!isFull()) {
 			push_private(val);
@@ -40,7 +44,7 @@ public class ArrayStack<T> {
 	}
 	
 	public void pop() {
-		if (!isEmpty()) {
+		if (!empty()) {
 			pop_private();
 		}
 	}
@@ -50,7 +54,7 @@ public class ArrayStack<T> {
 	}
 	
 	public T top() {
-		if (!isEmpty()) {
+		if (!empty()) {
 			return top_private();
 		} else {
 			return null;
@@ -63,14 +67,14 @@ public class ArrayStack<T> {
 	
 	public boolean containsOne() {
 		//Check if already empty
-		if (isEmpty()) return false;
+		if (empty()) return false;
 		
 		//Store top val temporarily
 		T val = this.top();
 		this.pop();
 		
 		//Check if now empty
-		boolean flag = this.isEmpty();
+		boolean flag = this.empty();
 		
 		//Remember to push back
 		this.push(val);
@@ -78,4 +82,5 @@ public class ArrayStack<T> {
 		//Return result of flag
 		return flag;
 	}
+	
 }
