@@ -118,7 +118,7 @@ public class Heap<T extends Comparable<T>> implements Collection<T> {
 		siftdown(data, size);
 	}
 	
-	private static <T extends Comparable<T>> void siftdown(List<T> data, int rootIndex) {
+	public static <T extends Comparable<T>> void siftdown(List<T> data, int rootIndex) {
 		//last index
 		int size = data.size();
 		int last = size - 1;
