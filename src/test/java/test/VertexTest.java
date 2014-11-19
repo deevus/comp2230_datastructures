@@ -26,6 +26,17 @@ public class VertexTest {
 	}
 	
 	@Test
+	public void testToString_Marked() {
+		Vertex v = new Vertex();
+		v.setIndex(1);
+		v.setMarked(true);
+		String expectedOutput = "(1*)";
+		String actualOutput = v.toString();
+		
+		Assert.assertEquals(expectedOutput, actualOutput);
+	}
+	
+	@Test
 	public void testAppend() {
 		Vertex v = new Vertex();
 		Vertex a = new Vertex();
@@ -89,4 +100,5 @@ public class VertexTest {
 		Assert.assertEquals(v.numEdgesOut(), 1);
 		Assert.assertEquals(a, v.getAdjacentVertexAt(0));
 	}
+
 }

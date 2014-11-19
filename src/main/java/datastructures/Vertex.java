@@ -122,7 +122,8 @@ public class Vertex {
 	 */
 	@Override
 	public String toString() {
-		return "(" + this.index + ")";
+		if (marked) return "(" + this.index + "*)";
+		else return "(" + this.index + ")";
 	}
 	
 	/**
