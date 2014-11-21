@@ -159,18 +159,9 @@ public class LinkedList<T> implements Iterable<T> {
 		  curr = after;
 	  }
   }
-
-  /************ Private Methods **********/
-
-  /**
-   * Deletes the node after the current node
-   */
-  private void delete(Node<T> pos) {
-    pos.next = pos.next.next;
-  }
-
-  private int size() {
-	  Node<T> curr = start;
+  
+  public int size() {
+	  Node<T> curr = start.next; //Start is sentinel
 	  int size = 0;
 	  
 	  while (curr != null) {
@@ -180,12 +171,59 @@ public class LinkedList<T> implements Iterable<T> {
 	  
 	  return size;
   }
+
+  public void set(int index, T data) {
+	  Node<T> curr = start.next; //Sentinel node
+	  for (int i = 0; i < index; i++) {
+		  curr = curr.next;
+	  }
+	  
+	  curr.data = data;
+  }
   
-  private void print(Node<T> start) {
-    while (start != null) {
-      System.out.println(start.data);
-      start = start.next;
-    }
+  @Override
+  public String toString() {
+     String result = "";
+     Node<T> curr = start.next;
+	 while (curr != null) {
+      result += curr.data.toString();
+      curr = curr.next;
+	 }
+	 
+	 return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+	  if (obj == null || !(obj instanceof LinkedList)) return false;
+	  
+	  try {
+		  LinkedList<T>  other = (LinkedList<T>) obj;
+		  if (this.size() != other.size()) return false;
+		  else {
+			  Iterator<T> thisIter = this.iterator();
+			  Iterator<T> otherIter = other.iterator();
+			  
+			  while (thisIter.hasNext()) {
+				  T thisVal = thisIter.next();
+				  T otherVal = otherIter.next();
+				  if (!thisVal.equals(otherVal)) return false;
+			  }
+		  }
+	  } catch (Exception e) {
+		  return false;
+	  }
+	  
+	  return true;
+  }
+  
+  /************ Private Methods **********/
+
+  /**
+   * Deletes the node after the current node
+   */
+  private void delete(Node<T> pos) {
+    pos.next = pos.next.next;
   }
 
   /**
@@ -220,4 +258,5 @@ public class LinkedList<T> implements Iterable<T> {
 
     public void remove() { }
   }
+
 }

@@ -145,6 +145,12 @@ public class GraphTest {
 		NimVertex appended = new NimVertex(1,1);
 		NimVertex included = new NimVertex(0,0);
 		
+		/*
+		 * (5,4) --> (1,1)
+		 * 
+		 * (0,0)
+		 */
+		
 		graph.add(head, 0);
 		graph.add(appended, 0);
 		graph.add(included, 1);
